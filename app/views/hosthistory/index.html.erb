@@ -1,0 +1,21 @@
+<h1>Logeinträge</h1>
+
+<% @nodes.each do |node| %>
+<h2><%= node.name %> - <%= node.owner %></h2>
+<p>Total Uptime: <%= timeDiffToStr(node.total_uptime)%></p>
+<p>Uptime: <%= timeDiffToStr(node.uptime)%></p>
+
+  <table class="table">
+      <tr>
+        <th>IP-Adresse</th><th>Online ab</th><th>Online bis</th>
+      </tr>
+      <% node.get_log_entries.each do |entry| %>
+    <tr>
+      <td><%= entry.ip %></td>
+      <td><%= entry.went_on %></td>
+      <td><%= entry.went_off %></td>
+    </tr>
+  <% end %>
+  </table>
+
+<% end %>

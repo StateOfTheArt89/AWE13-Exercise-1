@@ -1,0 +1,27 @@
+<h1>Bekannte Hosts</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Owner</th>
+    <th>Mac</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @hosts.each do |host| %>
+  <tr>
+    <td><%= host.name %></td>
+    <td><%= host.owner %></td>
+    <td><%= host.mac %></td>
+    <td><%= link_to 'Anzeigen', host %></td>
+    <td><%= link_to 'Editieren', edit_host_path(host) %></td>
+    <td><%= link_to 'Löschen', host, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Neuer Eintrag', new_host_path %>

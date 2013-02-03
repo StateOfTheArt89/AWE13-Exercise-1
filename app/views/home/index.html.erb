@@ -1,0 +1,19 @@
+<table class="table">
+    <tr>
+      <th>Status</th><th>MAC-Adresse</th><th>Name</th><th>Gerät</th>
+    </tr>
+    <% @nodes.each do |node| %>
+  <tr>
+    <td><%= if node.is_online
+            '<span class="badge badge-success">on</span>'.html_safe
+            else
+            '<span class="badge">off</span>'.html_safe
+            end %></td>
+    <td><%= node.mac %></td>
+    <td><%= node.owner %></td>
+    <td><%= node.name %></td>
+  </tr>
+<% end %>
+</table>
+
+

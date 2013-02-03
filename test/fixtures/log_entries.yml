@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  mac: MyString
+  ip: MyString
+  went_on: 2013-02-02 22:21:03
+  went_off: 2013-02-02 22:21:03
+
+two:
+  mac: MyString
+  ip: MyString
+  went_on: 2013-02-02 22:21:03
+  went_off: 2013-02-02 22:21:03
