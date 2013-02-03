@@ -5,6 +5,7 @@ class LogEntry < ActiveRecord::Base
   	#Alle als derzeit online bekannten Einträge sammeln
   	currentlyOnlineEntries = LogEntry.where(:went_off => nil).all
 
+  	#TODO In Konfiguration auslagern
 	nmapOut = IO.popen('nmap 192.168.1.1/24 -sP')
 	nmapOut.each do |nmapLine|
 		if nmapLine.match(/Nmap scan report.+?/)
@@ -12,7 +13,7 @@ class LogEntry < ActiveRecord::Base
 				nmapLine = nmapLine.sub(/\n/m,'')
 				puts "Node online with ip address " + nmapLine
 
-				#search for mac address
+				#Versuch Mac-Adresse zu ermitteln
 				macAddress = searchForMac(nmapLine)
 				if macAddress == nil
 					#Skip
@@ -41,12 +42,13 @@ class LogEntry < ActiveRecord::Base
 					next
 				end
 
-				#mac addresse ist als derzeit online bekannt
-				#nach und nach alle online nodes entfernen
-				#einträge, die nach dieser schleife weiterhin im array sind, sind von online auf offline gewechselt
+				#Mac Adresse ist als derzeit online bekannt
+				#Nach und nach alle online Hosts entfernen
+				#Einträge, die nach dieser Schleife weiterhin im Array sind, sind von online auf offline gewechselt
 				onlineEntry = currentlyOnlineEntries.find_all{|e| e.mac == macAddress}[0]
 				if onlineEntry == nil:
-					puts "Das sollte hier nicht stehen!!!"
+					puts "Debug: Dieser Fall sollte nicht eintreten"
+					next
 				end
 				currentlyOnlineEntries.delete(onlineEntry)
 			end

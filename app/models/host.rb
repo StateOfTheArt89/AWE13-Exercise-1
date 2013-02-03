@@ -4,11 +4,7 @@ class Host < ActiveRecord::Base
 
   def is_online
   	entryCount = LogEntry.where(:mac => mac,:went_off => nil).count
-  	if entryCount == 0
-  		return false
-  	else
-  		return true
-  	end
+  	return entryCount == 0
   end
 
   def get_log_entries
