@@ -4,7 +4,7 @@ class Host < ActiveRecord::Base
 
   def is_online
   	entryCount = LogEntry.where(:mac => mac,:went_off => nil).count
-  	return entryCount == 0
+  	return !(entryCount == 0)
   end
 
   def get_log_entries
@@ -17,7 +17,7 @@ class Host < ActiveRecord::Base
   	uptime = 0
   	entries.each do |entry|
   		if entry.went_off == nil
-  			uptime += DateTime.now - entry.went_on
+  			uptime += Time.now - entry.went_on
   		else
   			uptime += entry.went_off - entry.went_on
   		end
@@ -29,9 +29,9 @@ class Host < ActiveRecord::Base
   def uptime
   	entry = LogEntry.where(:mac => mac, :went_off => nil).first
   	uptime = 0
-	if entry != nil
-		uptime += entry.went_off - entry.went_on
-	end
+  	if entry != nil
+  		uptime += Time.now - entry.went_on
+  	end
   	return uptime
   end
 
