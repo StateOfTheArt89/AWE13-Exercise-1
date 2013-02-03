@@ -16,7 +16,7 @@ class Host < ActiveRecord::Base
   	entries = LogEntry.where(:mac => mac).all
   	uptime = 0
   	entries.each do |entry|
-  		if entry.went_off == nil:
+  		if entry.went_off == nil
   			uptime += DateTime.now - entry.went_on
   		else
   			uptime += entry.went_off - entry.went_on
@@ -29,7 +29,7 @@ class Host < ActiveRecord::Base
   def uptime
   	entry = LogEntry.where(:mac => mac, :went_off => nil).first
   	uptime = 0
-	if entry != nil:
+	if entry != nil
 		uptime += entry.went_off - entry.went_on
 	end
   	return uptime

@@ -46,7 +46,7 @@ class LogEntry < ActiveRecord::Base
 				#Nach und nach alle online Hosts entfernen
 				#Einträge, die nach dieser Schleife weiterhin im Array sind, sind von online auf offline gewechselt
 				onlineEntry = currentlyOnlineEntries.find_all{|e| e.mac == macAddress}[0]
-				if onlineEntry == nil:
+				if onlineEntry == nil
 					puts "Debug: Dieser Fall sollte nicht eintreten"
 					next
 				end
