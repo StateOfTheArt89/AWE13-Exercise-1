@@ -18,5 +18,11 @@ It's little network statistics tool, which shows online hosts and logs their upt
 
 ## Screenshots ##
 
-![Screen1](/todo_add_pic.jpg "Main view")
+### Overview ###
+
+![Screen1](screen1.png "Main view")
+
+### List of known hosts ###
+
+![Screen1](screen2.png "Main view")
 
